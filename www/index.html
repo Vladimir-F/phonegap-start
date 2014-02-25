@@ -23,16 +23,52 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <title>Coluds Can Speak Radio</title>
     </head>
     <body>
         <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+            <h1>Clouds Can Speak</h1>
+            
+          <div id="play_button">
+              <a href="#" onClick = "playStream();">Lisen Now</a>
+         </div>          
+            
         </div>
+        
+        <script type="text/javascript">
+            var myaudio
+            
+            var music_player = document.getElementById("play_button");
+            music_player.play();
+            
+            function playStream() {
+              
+              try {
+                myaudio = new Audio('http://cloudscanspeak.net:8000/clouds');
+                myaudio.id = 'playerMyAdio';
+                myaudio.play();
+                  setToPause();
+              } catch (e) {
+                alert('no audio support!');
+              } 
+            }
+            
+            function pauseStream() {
+                myaudio.pause();
+                setToPlay();
+            }
+            
+            function setToPause() {
+              var playButton = document.getElementById("play_button");
+                playButton.innerHTML = "<a href=\"#\" onClick = \"pauseStream();\">Pause</a>";
+            }
+            
+            function setToPlay() {
+              var playButton = document.getElementById("play_button");
+                playButton.innerHTML = "<a href=\"#\" onClick = \"playStream();\">Play</a>";
+            }
+            
+        </script>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
